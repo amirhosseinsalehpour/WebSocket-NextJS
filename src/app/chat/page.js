@@ -7,7 +7,6 @@ const Chat = () => {
   const [username, setUsername] = useState("");
   const [connected, setConnected] = useState(false);
   const ws = useRef(null);
-  const messageBoxRef = useRef(null);
 
   useEffect(() => {
     if (connected) {
@@ -57,12 +56,6 @@ const Chat = () => {
     }
   };
 
-  useEffect(() => {
-    if (messageBoxRef.current) {
-      messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
-    }
-  }, [messages]);
-
   return (
     <div
       dir="rtl"
@@ -89,10 +82,7 @@ const Chat = () => {
         </div>
       ) : (
         <div>
-          <div
-            ref={messageBoxRef}
-            className="message-box border border-gray-300 p-4 h-72 overflow-y-auto bg-gray-50 rounded-lg"
-          >
+          <div className="message-box border border-gray-300 p-4 h-72 overflow-y-auto bg-gray-50 rounded-lg">
             {messages.map((message, index) => (
               <div
                 key={index}
